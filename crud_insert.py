@@ -2,9 +2,11 @@ from pymongo import MongoClient
 
 client = MongoClient("mongodb+srv://admin:1234@cluster0.tettcne.mongodb.net/?retryWrites=true&w=majority")
 
-db = client.Petanque
+db = client['Petanque']
 
-db.players.update_many(
+collection = db['players']
+
+db.players.insert_many(
     [
         {'first_name': 'Szymon',
          'last_name': 'Kołodziejski',
@@ -21,10 +23,15 @@ db.players.update_many(
     ]
 )
 
+query = {'first_name': 'Cezary'}
+new_values = {'$set': {'license': True}}
+
+collection.update_one(query, new_values)
+
 players_of_team = list(db.players.find())
 print(players_of_team)
 
-db.teams.update_one(
+db.teams.insert_one(
     {'name': 'UwB',
      'desc': 'University Team',
      'players': {'$set': {'players': players_of_team}},
