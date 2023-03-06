@@ -81,11 +81,13 @@ WSGI_APPLICATION = 'Petanque.wsgi.application'
 # Database
 passwd = os.getenv('MONGODB_PWD')
 
+connection_string = f'mongodb+srv://admin:{passwd}@cluster0.tettcne.mongodb.net/?retryWrites=true&w=majority'
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            'host': f'mongodb+srv://admin:{passwd}@cluster0.tettcne.mongodb.net/?retryWrites=true&w=majority',
+            'host': connection_string,
             'name': 'Petanque',
             'authMechanism': 'SCRAM-SHA-1'
         }
