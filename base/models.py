@@ -14,4 +14,4 @@ class Player(models.Model):
         return self.first_name
 
     class Meta:
-        ordering = ['license']
+        ordering = ['-license']
