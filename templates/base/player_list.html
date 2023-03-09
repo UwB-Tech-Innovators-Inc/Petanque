@@ -5,7 +5,9 @@
     </tr>
     {% for player in object_list %}
     <tr>
-        <td>{{ player.first_name}}, {{ player.last_name }}, {{ player.license }}</td>
+        <td>
+            {{ player }}
+        </td>
     </tr>
     {% empty %}
         <h3>No players in list!</h3>
