@@ -5,11 +5,15 @@
     </tr>
     {% for team in object_list %}
     <tr>
-        <td>{{ team.name }} -
-            {{ team.club }} -
-            {{ team.players.get_queryset }} -
-            {{ team.date }} -
-            {{ team.desc }}</td>
+        <td>
+            Name: {{ team.name }};
+            Club: {{ team.club }};
+            Players - {% for player in team.players.get_queryset %}
+                {{ player }}
+            {% endfor %}
+            Date: {{ team.date }};
+            Desc: {{ team.desc }}
+        </td>
     </tr>
     {% empty %}
         <h3>No teams in list!</h3>

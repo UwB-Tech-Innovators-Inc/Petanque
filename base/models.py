@@ -12,7 +12,7 @@ class Player(models.Model):
     license = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.first_name
+        return f'{self.first_name} {self.last_name} {self.license}'
 
     class Meta:
         ordering = ['-license']
