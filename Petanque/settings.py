@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
     'base.apps.BaseConfig',
 
 ]
@@ -81,11 +80,13 @@ WSGI_APPLICATION = 'Petanque.wsgi.application'
 # Database
 passwd = os.getenv('MONGODB_PWD')
 
+connection_string = f'mongodb+srv://admin:{passwd}@cluster0.tettcne.mongodb.net/?retryWrites=true&w=majority'
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            'host': f'mongodb+srv://admin:{passwd}@cluster0.tettcne.mongodb.net/?retryWrites=true&w=majority',
+            'host': connection_string,
             'name': 'Petanque',
             'authMechanism': 'SCRAM-SHA-1'
         }
@@ -128,9 +129,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'frontend/build/static'
-]
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -4,7 +4,8 @@ from pymongo import MongoClient
 
 client = MongoClient(connection_string)
 db = client['Petanque']
-collection = db['players']
+# collection = db['players']
+collection = db['base_player']
 
 # db.players.insert_many(
 #     [
