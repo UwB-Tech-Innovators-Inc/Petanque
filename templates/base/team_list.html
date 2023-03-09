@@ -1,0 +1,17 @@
+
+<table>
+    <tr>
+        <th>Teams</th>
+    </tr>
+    {% for team in object_list %}
+    <tr>
+        <td>{{ team.name }} -
+            {{ team.club }} -
+            {{ team.players.get_queryset }} -
+            {{ team.date }} -
+            {{ team.desc }}</td>
+    </tr>
+    {% empty %}
+        <h3>No teams in list!</h3>
+    {% endfor %}
+</table>
