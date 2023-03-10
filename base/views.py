@@ -1,26 +1,40 @@
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.views import APIView
 from .models import Player, Team
+from .serializers import PlayerSerializer, TeamSerializer
 
 
-class PlayersList(ListView):
-    model = Player
+@api_view(['GET', 'POST'])
+def player_collection(request):
+    if request.method == 'GET':
+        players = Player.objects.all()
+        serializer = PlayerSerializer(players, many=True)
+        return Response(serializer.data)
 
 
-class PlayerCreate(CreateView):
-    model = Player
-    fields = ['first_name', 'last_name', 'license']
-    success_url = reverse_lazy('players_list')
+@api_view(['GET'])
+def team_collection(request):
+    if request.method == 'GET':
+        teams = Team.objects.all()
+        serializer = TeamSerializer(teams, many=True)
+        return Response(serializer.data)
 
 
-class TeamsList(ListView):
-    model = Team
+class PlayerList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'base/player_list.html'
+
+    def get(self, request):
+        queryset = Player.objects.all()
+        return Response({'players': queryset})
 
 
-class TeamCreate(CreateView):
-    model = Team
-    fields = ['name', 'club', 'players', 'date', 'desc']
-    success_url = reverse_lazy('teams_list')
+class TeamList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'base/team_list.html'
 
+    def get(self, request):
+        queryset = Team.objects.all()
+        return Response({'teams': queryset})

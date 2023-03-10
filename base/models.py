@@ -6,7 +6,6 @@ import datetime
 
 
 class Player(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     license = models.BooleanField(default=False)
@@ -19,7 +18,6 @@ class Player(models.Model):
 
 
 class Team(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=30, unique=True)
     club = models.CharField(max_length=30)
     players = models.ManyToManyField(Player)
