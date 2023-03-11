@@ -1,0 +1,24 @@
+
+<table>
+    <tr>
+        <th>Teams</th>
+    </tr>
+
+    <a href="{% url 'create-team' %}">Add Team</a>
+
+    {% for team in teams %}
+    <tr>
+        <td>
+            Name: {{ team.name }};
+            Club: {{ team.club }};
+            Players - {% for player in team.players.get_queryset %}
+                {{ player }}
+            {% endfor %}
+            Date: {{ team.date }};
+            Desc: {{ team.desc }}
+        </td>
+    </tr>
+    {% empty %}
+        <h3>No teams in list!</h3>
+    {% endfor %}
+</table>

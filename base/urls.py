@@ -1,8 +1,11 @@
 from django.urls import path
 
-from .views import PlayerList, PlayerCreate
+from . import views
+
 
 urlpatterns = [
-    path('', PlayerList.as_view(), name='players'),
-    path('player-create/', PlayerCreate.as_view(), name='player-create'),
+    path('players/', views.PlayerList.as_view(), name='players'),
+    path('create-player/', views.playerCreate, name='create-player'),
+    path('teams/', views.TeamList.as_view(), name='teams'),
+    path('create-team/', views.teamCreate, name='create-team'),
 ]
