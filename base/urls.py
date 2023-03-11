@@ -1,9 +1,10 @@
-from django.urls import re_path
+from django.urls import path
 
 from . import views
 
 
 urlpatterns = [
-    re_path(r'^api/v1/players/$', views.PlayerList.as_view()),
-    re_path(r'^api/v1/teams/$', views.TeamList.as_view()),
+    path('players/', views.PlayerList.as_view(), name='players'),
+    path('create-player/', views.playerCreate, name='create-player'),
+    path('teams/', views.TeamList.as_view(), name='teams'),
 ]

@@ -3,6 +3,9 @@
     <tr>
         <th>Players</th>
     </tr>
+
+    <a href="{% url 'create-player' %}">Add Player</a>
+
     {% for player in players %}
     <tr>
         <td>

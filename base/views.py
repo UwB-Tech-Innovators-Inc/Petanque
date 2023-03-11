@@ -1,9 +1,13 @@
+from django.shortcuts import render, redirect
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
+
 from .models import Player, Team
 from .serializers import PlayerSerializer, TeamSerializer
+from .forms import PlayerForm
 
 
 @api_view(['GET', 'POST'])
@@ -38,3 +42,17 @@ class TeamList(APIView):
     def get(self, request):
         queryset = Team.objects.all()
         return Response({'teams': queryset})
+
+
+def playerCreate(request):
+    form = PlayerForm()
+
+    if request.method == 'POST':
+        form = PlayerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('players')
+
+    context = {'form': form}
+    return render(request, 'base/player_create.html', context)
+

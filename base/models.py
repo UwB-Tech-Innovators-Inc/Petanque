@@ -13,8 +13,8 @@ class Player(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name} {self.license}'
 
-    class Meta:
-        ordering = ['-license']
+    # class Meta:
+    #     ordering = ['-license']
 
 
 class Team(models.Model):
