@@ -3,6 +3,9 @@
     <tr>
         <th>Teams</th>
     </tr>
+
+    <a href="{% url 'create-team' %}">Add Team</a>
+
     {% for team in teams %}
     <tr>
         <td>

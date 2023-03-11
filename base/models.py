@@ -13,9 +13,6 @@ class Player(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name} {self.license}'
 
-    # class Meta:
-    #     ordering = ['-license']
-
 
 class Team(models.Model):
     name = models.CharField(max_length=30, unique=True)
@@ -26,6 +23,3 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        ordering = ['-date']

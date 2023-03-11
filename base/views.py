@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 
 from .models import Player, Team
 from .serializers import PlayerSerializer, TeamSerializer
-from .forms import PlayerForm
+from .forms import PlayerForm, TeamForm
 
 
 @api_view(['GET', 'POST'])
@@ -35,15 +35,6 @@ class PlayerList(APIView):
         return Response({'players': queryset})
 
 
-class TeamList(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'base/team_list.html'
-
-    def get(self, request):
-        queryset = Team.objects.all()
-        return Response({'teams': queryset})
-
-
 def playerCreate(request):
     form = PlayerForm()
 
@@ -55,4 +46,26 @@ def playerCreate(request):
 
     context = {'form': form}
     return render(request, 'base/player_create.html', context)
+
+
+class TeamList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'base/team_list.html'
+
+    def get(self, request):
+        queryset = Team.objects.all()
+        return Response({'teams': queryset})
+
+
+def teamCreate(request):
+    form = TeamForm()
+
+    if request.method == 'POST':
+        form = TeamForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('teams')
+
+    context = {'form': form}
+    return render(request, 'base/team_create.html', context)
 
