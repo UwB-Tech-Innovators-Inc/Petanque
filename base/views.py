@@ -5,24 +5,16 @@ from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
 
-from .models import Player, Team
-from .serializers import PlayerSerializer, TeamSerializer
-from .forms import PlayerForm, TeamForm
+from .models import Player, Team, Club
+from .serializers import PlayerSerializer, TeamSerializer, ClubSerializer
+from .forms import PlayerForm, TeamForm, ClubForm
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def player_collection(request):
     if request.method == 'GET':
         players = Player.objects.all()
         serializer = PlayerSerializer(players, many=True)
-        return Response(serializer.data)
-
-
-@api_view(['GET'])
-def team_collection(request):
-    if request.method == 'GET':
-        teams = Team.objects.all()
-        serializer = TeamSerializer(teams, many=True)
         return Response(serializer.data)
 
 
@@ -48,6 +40,14 @@ def playerCreate(request):
     return render(request, 'base/player_create.html', context)
 
 
+@api_view(['GET'])
+def team_collection(request):
+    if request.method == 'GET':
+        teams = Team.objects.all()
+        serializer = TeamSerializer(teams, many=True)
+        return Response(serializer.data)
+
+
 class TeamList(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'base/team_list.html'
@@ -69,3 +69,32 @@ def teamCreate(request):
     context = {'form': form}
     return render(request, 'base/team_create.html', context)
 
+
+@api_view(['GET'])
+def club_collection(request):
+    if request.method == 'GET':
+        clubs = Club.objects.all()
+        serializer = ClubSerializer(clubs, many=True)
+        return Response(serializer.data)
+
+
+class ClubList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'base/club_list.html'
+
+    def get(self, request):
+        queryset = Club.objects.all()
+        return Response({'clubs': queryset})
+
+
+def clubCreate(request):
+    form = ClubForm()
+
+    if request.method == 'POST':
+        form = ClubForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('clubs')
+
+    context = {'form': form}
+    return render(request, 'base/club_create.html', context)

@@ -1,0 +1,19 @@
+
+<table>
+    <tr>
+        <th>Clubs</th>
+    </tr>
+
+    <a href="{% url 'create-club' %}">Add Club</a>
+
+    {% for club in clubs %}
+    <tr>
+        <td>
+            {{ club.name }}
+            {{ club.players.get_queryset }}
+        </td>
+    </tr>
+    {% empty %}
+        <h3>No clubs in list!</h3>
+    {% endfor %}
+</table>
