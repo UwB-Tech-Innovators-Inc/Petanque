@@ -1,5 +1,6 @@
-from django.db import models
 import datetime
+from django.db import models
+from djongo.models.fields import ObjectIdField
 
 # Create your models here.
 
@@ -44,8 +45,9 @@ class Address(models.Model):
 
 
 class Club(Address):
+    _id = ObjectIdField(primary_key=True)
     name = models.CharField(max_length=30)
-    # players in club
+    players = models.ManyToManyField(Player)
 
     def __str__(self):
         return self.name

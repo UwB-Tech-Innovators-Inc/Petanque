@@ -88,13 +88,15 @@ class ClubList(APIView):
 
 
 def clubCreate(request):
-    form = ClubForm()
-
     if request.method == 'POST':
         form = ClubForm(request.POST)
         if form.is_valid():
-            form.save()
+            club = form.save(commit=False)
+            club.save()
+            players = form.cleaned_data.get('players') or []
+            for player in players:
+                club.players.add(player)
             return redirect('clubs')
-
-    context = {'form': form}
-    return render(request, 'base/club_create.html', context)
+    else:
+        form = ClubForm()
+    return render(request, 'base/club_create.html', {'form': form})

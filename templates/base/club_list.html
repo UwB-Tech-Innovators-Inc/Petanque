@@ -1,4 +1,3 @@
-
 <table>
     <tr>
         <th>Clubs</th>
@@ -10,7 +9,13 @@
     <tr>
         <td>
             {{ club.name }}
-            {{ club.players.get_queryset }}
+            {% if club.pk %}
+            {% for player in club.players.all %}
+                <li>{{ player.first_name }} {{ player.last_name }}</li>
+            {% endfor %}
+            {% else %}
+                <li>Club not saved yet</li>
+            {% endif %}
         </td>
     </tr>
     {% empty %}
