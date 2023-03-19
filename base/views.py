@@ -58,16 +58,18 @@ class TeamList(APIView):
 
 
 def teamCreate(request):
-    form = TeamForm()
-
     if request.method == 'POST':
         form = TeamForm(request.POST)
         if form.is_valid():
-            form.save()
+            team = form.save(commit=False)
+            team.save()
+            team_players = form.cleaned_data.get('team_players') or []
+            for player in team_players:
+                team.team_players.add(player)
             return redirect('teams')
-
-    context = {'form': form}
-    return render(request, 'base/team_create.html', context)
+    else:
+        form = TeamForm()
+    return render(request, 'base/team_create.html', {'form': form})
 
 
 @api_view(['GET'])

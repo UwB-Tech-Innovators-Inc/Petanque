@@ -54,10 +54,12 @@ class Club(Address):
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    # players in team
+    _id = ObjectIdField(primary_key=True)
+    name = models.CharField(max_length=30)
+    # club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    team_players = models.ManyToManyField(Player)
     desc = models.CharField(max_length=200)
-    # captain
+    # captain = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='team.captain+')
 
     # match_points = models.IntegerField()
     # Manual enter, to method, count from mach_points:

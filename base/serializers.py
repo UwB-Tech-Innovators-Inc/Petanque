@@ -17,7 +17,7 @@ class TeamSerializer(ModelSerializer):
     class Meta:
         model = Team
         fields = '__all__'
-        ordering = ['-date']
+        ordering = ['-name']
 
 
 class ClubSerializer(ModelSerializer):
