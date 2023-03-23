@@ -10,6 +10,10 @@ from .serializers import PlayerSerializer, TeamSerializer, ClubSerializer
 from .forms import PlayerForm, TeamForm, ClubForm
 
 
+def home(request):
+    return render(request, 'base/home.html')
+
+
 @api_view(['GET'])
 def player_collection(request):
     if request.method == 'GET':
