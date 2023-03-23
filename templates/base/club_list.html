@@ -11,7 +11,7 @@
             {{ club.name }}
             {% if club.pk %}
             {% for player in club.players.all %}
-                <li>{{ player.first_name }} {{ player.last_name }}</li>
+                <li>{{ player }}</li>
             {% endfor %}
             {% else %}
                 <li>Club not saved yet</li>

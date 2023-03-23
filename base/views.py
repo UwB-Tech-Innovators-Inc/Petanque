@@ -67,9 +67,11 @@ def teamCreate(request):
         if form.is_valid():
             team = form.save(commit=False)
             team.save()
+
             team_players = form.cleaned_data.get('team_players') or []
             for player in team_players:
                 team.team_players.add(player)
+
             return redirect('teams')
     else:
         form = TeamForm()

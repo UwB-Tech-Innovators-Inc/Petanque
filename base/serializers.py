@@ -12,17 +12,17 @@ class PlayerSerializer(ModelSerializer):
         ordering = ['-license']
 
 
-class TeamSerializer(ModelSerializer):
-
-    class Meta:
-        model = Team
-        fields = '__all__'
-        ordering = ['-name']
-
-
 class ClubSerializer(ModelSerializer):
 
     class Meta:
         model = Club
+        fields = '__all__'
+        ordering = ['-name']
+
+
+class TeamSerializer(ModelSerializer):
+
+    class Meta:
+        model = Team
         fields = '__all__'
         ordering = ['-name']

@@ -12,7 +12,7 @@
             {{ team.name }}
             {% if team.pk %}
                 {% for player in team.team_players.all %}
-                    <li>{{ player.first_name }} {{ player.last_name }}</li>
+                    <li>{{ player }}</li>
                 {% endfor %}
             {% else %}
                 <li>Team not saved yet</li>
