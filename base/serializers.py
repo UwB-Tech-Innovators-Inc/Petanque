@@ -1,10 +1,10 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import Player, Team, Club
 
 # Create your models here.
 
 
-class PlayerSerializer(ModelSerializer):
+class PlayerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Player
@@ -12,7 +12,7 @@ class PlayerSerializer(ModelSerializer):
         ordering = ['-license']
 
 
-class ClubSerializer(ModelSerializer):
+class ClubSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Club
@@ -20,9 +20,8 @@ class ClubSerializer(ModelSerializer):
         ordering = ['-name']
 
 
-class TeamSerializer(ModelSerializer):
+class TeamSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Team
         fields = '__all__'
-        ordering = ['-name']
