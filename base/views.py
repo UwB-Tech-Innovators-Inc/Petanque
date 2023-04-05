@@ -10,9 +10,9 @@ from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
 
-from .models import Player, Team, Club
-from .serializers import PlayerSerializer, TeamSerializer, ClubSerializer
-from .forms import PlayerForm, TeamForm, ClubForm
+from .models import Player, Team, Club, Tournament
+from .serializers import PlayerSerializer, TeamSerializer, ClubSerializer, TournamentSerializer
+from .forms import PlayerForm, TeamForm, ClubForm, TournamentForm
 
 
 def home(request):
@@ -72,10 +72,6 @@ def teamCreate(request):
         if form.is_valid():
             team = form.save(commit=False)
             team.save()
-
-            team_players = form.cleaned_data.get('team_players') or []
-            for player in team_players:
-                team.team_players.add(player)
 
             return redirect('teams')
     else:
@@ -140,3 +136,12 @@ class RegisterPage(FormView):
         if self.request.user.is_authenticated:
             return redirect('home')
         return super(RegisterPage, self).get(*args, **kwargs)
+
+
+class TournamentList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'base/tournament_list.html'
+
+    def get(self, request):
+        queryset = Tournament.objects.all()
+        return Response({'tournaments': queryset})
