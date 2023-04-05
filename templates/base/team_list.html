@@ -9,13 +9,14 @@
     {% for team in teams %}
     <tr>
         <td>
-            Name: {{ team.name }};
-            Club: {{ team.club }};
-            Players - {% for player in team.players.get_queryset %}
-                {{ player }}
-            {% endfor %}
-            Date: {{ team.date }};
-            Desc: {{ team.desc }}
+            {{ team.name }}
+            {% if team.pk %}
+                {% for player in team.team_players.all %}
+                    <li>{{ player }}</li>
+                {% endfor %}
+            {% else %}
+                <li>Team not saved yet</li>
+            {% endif %}
         </td>
     </tr>
     {% empty %}
