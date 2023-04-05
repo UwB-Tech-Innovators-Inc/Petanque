@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Player, Team, Club
+from .models import Player, Team, Club, Tournament
 
 
 class PlayerForm(forms.ModelForm):
@@ -18,4 +18,10 @@ class TeamForm(forms.ModelForm):
 class ClubForm(forms.ModelForm):
     class Meta:
         model = Club
+        fields = '__all__'
+
+
+class TournamentForm(forms.ModelForm):
+    class Meta:
+        model = Tournament
         fields = '__all__'

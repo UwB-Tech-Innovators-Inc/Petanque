@@ -28,6 +28,7 @@ class Person(models.Model):
 class Player(Person):
     license = models.CharField(max_length=30, blank=True, null=True, unique=True)
     birth_date = models.DateField(default=datetime.date.today)
+
     # age_category = models.CharField(max_length=2)  # set from birth_date
     power = models.FloatField(default=0)
     points = models.FloatField(default=0)
@@ -86,9 +87,8 @@ class Round:
     pass
 
 
-class Tournament:
-    # name
-    # place
-    # organizer
+class Tournament(models.Model):
+    name = models.CharField(max_length=30)
+    place = models.CharField(max_length=30)
+    organizer = models.CharField(max_length=30)
     # list of rounds
-    pass
