@@ -91,8 +91,6 @@ DATABASES = {
         'ENGINE': 'djongo',
         'CLIENT': {
             'host': connection_string,
-            'name': 'Petanque',
-            'authMechanism': 'SCRAM-SHA-1'
         }
     }
 }
