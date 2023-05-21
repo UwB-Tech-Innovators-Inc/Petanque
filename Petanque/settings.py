@@ -27,9 +27,8 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
-SITE_ID = 1
 
 # Application definition
 
@@ -40,11 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
 
-    'base',
-
-    'rest_framework',
+    'user',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -57,8 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Petanque.urls'
@@ -66,7 +60,7 @@ ROOT_URLCONF = 'Petanque.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'base/../templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,8 +81,8 @@ DATABASES = {
         'ENGINE': 'djongo',
         'CLIENT': {
             'host': "mongodb+srv://{}:{}@{}/?retryWrites=true&w=majority".format(
-                os.getenv("MONGODB_USER"), os.getenv('MONGODB_PASSWORD'), os.getenv("MONGODB_CLUSTER")),
-            'name': 'Petanque',
+                os.getenv('MONGODB_USER'), os.getenv('MONGODB_PASSWORD'), os.getenv('MONGODB_CLUSTER')),
+            'name': os.getenv('MONGODB_NAME'),
             'authMechanism': 'SCRAM-SHA-1'
         }
     }
@@ -127,12 +121,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
 # User AUTH
+AUTH_USER_MODEL = 'user.Player'
+
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
