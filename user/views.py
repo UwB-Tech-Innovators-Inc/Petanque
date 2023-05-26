@@ -7,6 +7,10 @@ from .models import Player
 from .forms import PlayerCreationForm
 
 
+def home(request):
+    return render(request, 'user/home.html')
+
+
 def account_details(request):
     user = Player.objects.get(username=request.user)
     context = {'user': user}
