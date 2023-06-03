@@ -1,0 +1,47 @@
+{
+    "name": "faza_2", 
+    "group_9": {
+        "teams": {
+            "team_1": "G_1_1", 
+            "team_2": "G_1_2", 
+            "team_3": "G_1_3", 
+            "team_4": "G_2_1", 
+            "team_5": "G_2_2", 
+            "team_6": "G_2_3"
+        }, 
+        "games": {}
+    }, 
+    "group_10": {
+        "teams": {
+            "team_1": "G_3_1", 
+            "team_2": "G_3_2", 
+            "team_3": "G_3_3", 
+            "team_4": "G_4_1", 
+            "team_5": "G_4_2", 
+            "team_6": "G_4_3"
+        }, 
+        "games": {}
+    }, 
+    "group_11": {
+        "teams": {
+            "team_1": "G_5_1", 
+            "team_2": "G_5_2", 
+            "team_3": "G_5_3", 
+            "team_4": "G_6_1", 
+            "team_5": "G_6_2", 
+            "team_6": "G_6_3"
+        }, 
+        "games": {}
+    }, 
+    "group_12": {
+        "teams": {
+            "team_1": "G_7_1", 
+            "team_2": "G_7_2", 
+            "team_3": "G_7_3", 
+            "team_4": "G_8_1", 
+            "team_5": "G_8_2", 
+            "team_6": "G_8_3"
+        }, 
+        "games": {}
+    }
+}
