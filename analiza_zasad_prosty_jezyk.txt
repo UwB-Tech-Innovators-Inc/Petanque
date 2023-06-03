@@ -1,0 +1,15 @@
+- sprawdzam ilość wygranych
+    a) nie istnieją konflikty ilości
+    b) istnieją konflikty dwóch drużyn
+        - wyświetl okienko, które wymaga wyników bezpośredniego meczu między drużynami
+        - wygrana drużyna zajmuje miejsce o, które walczą drużyny
+        ? ale co dalej co z 2 turą i gdzie dołączyć ten mecz
+    c) 3 lub więcej drużyn z identyczną sumą wygranych
+        a) (większa ilość wygrywa) sprawdzamy kto najwięcej wygrał - wśród drużyn mających konflikt
+        b) (większa ilość wygrywa) sprawdzamy sumę różnic punktów zdobytych i straconych w poszczególnych meczach - wśród drużyn mających konflikt
+        c) (większa ilość wygrywa) sprawdzamy sumę punktów zdobytych w poszczególnych meczach - wśród drużyn mających konflikt
+        d) (mniejsza ilość wygrywa) sprawdzamy sumę punktów straconych w poszczególnych meczach - wśród drużyn mających konflikt
+        e) (większa ilość wygrywa) sprawdzamy sumę różnic punktów zdobytych i straconych w poszczególnych meczach - wśród wszystkich drużyn w grupie
+        f) (większa ilość wygrywa) sprawdzamy sumę punktów zdobytych w poszczególnych meczach - wśród wszystkich drużyn w grupie
+        g) (mniejsza ilość wygrywa) sprawdzamy sumę punktów straconych w poszczególnych meczach - wśród wszystkich drużyn w grupie
+        h) wygrywa numer, który ma niższy numer (jest wyżej w tabelce) w grupie (własna decyzja, bo zasady nie obejmują tego)
