@@ -62,55 +62,50 @@ def phase_1_prepare_result_json(array):
 
     pass
 
-def phase_1_single_group(group):
-    teams = group["teams"]
-    teams_sum = {
-        teams["team_1"]: {
-            "wins": 0, "balance_z": 0, "gained_z": 0, "lost_z": 0, "balance": 0, "gained": 0, "lost": 0
-        },
-        teams["team_2"]: {
-            "wins": 0, "balance_z": 0, "gained_z": 0, "lost_z": 0, "balance": 0, "gained": 0, "lost": 0
-        },
-        teams["team_3"]: {
-            "wins": 0, "balance_z": 0, "gained_z": 0, "lost_z": 0, "balance": 0, "gained": 0, "lost": 0
-        },
-        teams["team_4"]: {
-            "wins": 0, "balance_z": 0, "gained_z": 0, "lost_z": 0, "balance": 0, "gained": 0, "lost": 0
-        }
-    }
-    games = group["games"]
-    for round in games:
-        for game_name in games[round]:
-            game = games[round][game_name]
 
-            t_sum_1 = teams_sum[game["team_1"]]
-            t_sum_2 = teams_sum[game["team_2"]]
+def single_group_conditions(group):
+    teams = {}
+    for team in group["teams"]:
+        team_name = group["teams"][team]
+        teams[team_name] = 0  # add new    key: value
 
+    for round_name in group["games"]:
+        for game_name in group["games"][round_name]:
+            game = group["games"][round_name][game_name]
+            # print(game)
             if game["result_1"] > game["result_2"]:
-                t_sum_1["wins"] += 1
-                t_sum_1["balance_z"] += game["result_1"] - game["result_2"]
-
-                t_sum_2["wins"] += 0
-                t_sum_2["balance_z"] += game["result_1"] - game["result_2"]
+                teams[game["team_1"]] += 1
+            elif game["result_1"] < game["result_2"]:
+                teams[game["team_2"]] += 1
             else:
-                t_sum_1["wins"] += 0
-                t_sum_1["balance_z"] += game["result_2"] - game["result_1"]
+                print("nie powinno być identycznych wyników meczu")
+                exit(1)
 
-                t_sum_2["wins"] += 1
-                t_sum_2["balance_z"] += game["result_2"] - game["result_1"]
+    conflict_exits = 0
+    # for team_name1 in teams:
+    #     for team_name2 in teams:
+    #         if team_name1 != team_name2:
+    #             continue
+    #         if teams[team_name1] == teams[team_name2]:
+    #             print(teams[team_name1], " ", teams[team_name2], end=": ")
+    #             print("konflikt!")
+    #             conflict_exits = 1
 
-            t_sum_1["gained_z"] += game["result_1"]
-            t_sum_1["lost_z"] += game["result_2"]
-            t_sum_2["gained_z"] += game["result_2"]
-            t_sum_2["lost_z"] += game["result_1"]
+    if not conflict_exits:
+        # sort by the highest win values
+        sorted_teams = dict(sorted(teams.items(), key=lambda x: x[1], reverse=True))
 
-    # print(teams_sum)
-    result = []
-    for name in teams_sum:
-        result.append(name)
-    return result
+        # # return decreasing ordered dictionary with sums of wins
+        # return sorted_teams
 
-    pass
+        # return names in decreasing ordered array
+        array_of_team_names = []
+        for team_name in sorted_teams:
+            array_of_team_names.append(team_name)
+        return array_of_team_names
+    else:
+        # there are 2 or more equal win sums
+        pass
 
 
 def phase_1_result(json):
@@ -126,19 +121,22 @@ def phase_1_result(json):
             continue
 
         group = json[group_name]
-        group_result = phase_1_single_group(group)
-        for team in group_result:
-            group_teams.append(team)
-            if len(group_teams) == 3:
-                break
-
-        i += 1
-        if i == 2:
-            all_groups.append(group_teams.copy())
-            group_teams.clear()
-            i = 0
-
-    return phase_1_prepare_result_json(all_groups)
+        array_of_team_names = single_group_conditions(group)
+        print(array_of_team_names)
+        print()
+    #     group_result =
+    #     for team in group_result:
+    #         group_teams.append(team)
+    #         if len(group_teams) == 3:
+    #             break
+    #
+    #     i += 1
+    #     if i == 2:
+    #         all_groups.append(group_teams.copy())
+    #         group_teams.clear()
+    #         i = 0
+    #
+    # return phase_1_prepare_result_json(all_groups)
     pass
 
 def tmp():
@@ -147,7 +145,6 @@ def tmp():
     file = open('petanque_mpm_faza_1.json')
     data = json.load(file)
     file.close()
-    print(data)
     phase_1_result(data)
 
     pass
