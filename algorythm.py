@@ -63,6 +63,47 @@ def phase_1_prepare_result_json(array):
     pass
 
 
+# def check_conflicts(teans):
+#     ################################################## ASSUME THAT THERE ARE ONLY ONE CONFLICT ####################
+#     # count number of winns
+#     print(teams)
+#     winsCount = {}
+#     for team_name in teams:
+#         if team[team_name] in winsCount:
+#             winsCount[team[team_name]] += 1
+#         else:
+#             winsCount[team[team_name]] = 1
+#
+#     conflict = 0
+#     additional_match = 0
+#
+#     # check if group have equal wins count
+#     for i in winsCount:
+#         if winsCount[i] == 2:
+#             additional_match += 1
+#     if additional_match > 1:
+#         print("są 2 drużyny posiadające identyczną ilość wygranych: ", additional_match)
+#         return 2
+#
+#     for i in winsCount:
+#         if winsCount[i] >= 3:
+#             conflict += 1
+#     if winsCount > 1:
+#         print("są ponad 3 drużyny posiadające identyczną ilość wygranych: ", winsCount)
+#         return 3
+#
+#     return 0
+
+
+def sort_by_wins_count(teams):
+    sorted_teams = [[]]
+    for i in range(len(teams)):
+        sorted_teams.append([])
+        for team_name in teams:
+            if teams[team_name] == i:
+                sorted_teams[i].append(team_name)
+    return sorted_teams
+
 def single_group_conditions(group):
     teams = {}
     for team in group["teams"]:
@@ -81,31 +122,42 @@ def single_group_conditions(group):
                 print("nie powinno być identycznych wyników meczu")
                 exit(1)
 
-    conflict_exits = 0
-    # for team_name1 in teams:
-    #     for team_name2 in teams:
-    #         if team_name1 != team_name2:
-    #             continue
-    #         if teams[team_name1] == teams[team_name2]:
-    #             print(teams[team_name1], " ", teams[team_name2], end=": ")
-    #             print("konflikt!")
-    #             conflict_exits = 1
 
-    if not conflict_exits:
-        # sort by the highest win values
-        sorted_teams = dict(sorted(teams.items(), key=lambda x: x[1], reverse=True))
+    if 'G_1_1' in teams:
+        teams['G_1_1'] = 2
 
-        # # return decreasing ordered dictionary with sums of wins
-        # return sorted_teams
+    teams_sorted_by_values = sort_by_wins_count(teams)
 
-        # return names in decreasing ordered array
-        array_of_team_names = []
-        for team_name in sorted_teams:
-            array_of_team_names.append(team_name)
-        return array_of_team_names
-    else:
-        # there are 2 or more equal win sums
-        pass
+    for i in teams_sorted_by_values:
+        if len(i) == 2:
+            print("do obsłużenia gdy 2 drużyny mają identyczną sumę zwycięstw")
+            print(i)
+        if len(i) >= 3:
+            # function (i, array)
+            print(i)
+
+
+    return 1
+    # conflict = check_conflicts(teams)
+    #
+    # if conflict == 0:
+    #     # sort by the highest win values
+    #     sorted_teams = dict(sorted(teams.items(), key=lambda x: x[1], reverse=True))
+    #
+    #     # # return decreasing ordered dictionary with sums of wins
+    #     # return sorted_teams
+    #
+    #     # return names in decreasing ordered array
+    #     array_of_team_names = []
+    #     for team_name in sorted_teams:
+    #         array_of_team_names.append(team_name)
+    #     return array_of_team_names
+    # elif conflict == 2:
+    #     # there are 2 equal win sums
+    #     pass
+    # elif conflict == 3:
+    #     # there are more than 2 equal win sums
+    #     pass
 
 
 def phase_1_result(json):
@@ -122,8 +174,8 @@ def phase_1_result(json):
 
         group = json[group_name]
         array_of_team_names = single_group_conditions(group)
-        print(array_of_team_names)
-        print()
+        # print(array_of_team_names)
+        # print()
     #     group_result =
     #     for team in group_result:
     #         group_teams.append(team)
@@ -146,6 +198,21 @@ def tmp():
     data = json.load(file)
     file.close()
     phase_1_result(data)
+
+    # pass
+    #
+    # d = {'G_7_1': 3, 'G_7_2': 2, 'G_7_3': 1, 'G_7_4': 0, 'G_7_x': 2}
+    # a = {}
+    # print(d)
+    # for d_name in d:
+    #     if d[d_name] in a:
+    #         a[d[d_name]] += 1
+    #     else:
+    #         a[d[d_name]] = 1
+    #     print(d[d_name], a)
+    #
+    # # a[3] = 4
+    # print(a)
 
     pass
 
