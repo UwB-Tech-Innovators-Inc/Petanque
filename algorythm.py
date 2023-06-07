@@ -63,14 +63,46 @@ def phase_1_prepare_result_json(array):
     pass
 
 
-def solve_intrested_teams_conflicts(intrested_teams, group):
+def solve_group_conflict_3(intrested_teams, group_games):
+    # check which team was better in those who are in conflict
     conflict_solved_array = []
+    for round_name in group_games:
+        round = group_games[round_name]
+        for game_name in round:
+            game = round[game_name]
+            pass
+
     for i in intrested_teams:
         conflict_solved_array.append(i)
-    conflict_solved_array.reverse()
+
     return conflict_solved_array
 
-def sort_by_win_count(teams):
+def solve_group_conflict_2(both_teams, group_games):
+    # check which team won in their match
+    conflict_solved_array = []
+    for round_name in group_games:
+        round = group_games[round_name]
+        for game_name in round:
+            game = round[game_name]
+            if game["team_1"] == both_teams[0] and game["team_2"] == both_teams[1] or \
+                game["team_1"] == both_teams[1] and game["team_2"] == both_teams[0]:
+
+                if game["result_1"] > game["result_2"]:
+                    conflict_solved_array.append(game["team_1"])
+                    conflict_solved_array.append(game["team_2"])
+                    break
+                elif game["result_1"] < game["result_2"]:
+                    conflict_solved_array.append(game["team_2"])
+                    conflict_solved_array.append(game["team_1"])
+                    break
+                else:
+                    print("nie powinno być identycznych wyników meczu")
+                    exit(1)
+    return conflict_solved_array
+
+
+
+def group_by_win_count(teams):
     sorted_teams = [[]]
     for i in range(len(teams)):
         sorted_teams.append([])
@@ -102,32 +134,29 @@ def single_group_order(group):
                 print("nie powinno być identycznych wyników meczu")
                 exit(1)
 
-    # testing what happens if someone have equals wins count
-    if 'G_1_1' in teams:
-        teams['G_1_1'] = 1
-    if 'G_1_2' in teams:
-        teams['G_1_2'] = 1
+    # # testing what happens if someone have equals wins count
+    # if 'G_1_1' in teams:
+    #     teams['G_1_1'] = 1
+    # if 'G_1_2' in teams:
+    #     teams['G_1_2'] = 1
 
     print(teams)
 
-    teams_sorted_by_win_count = sort_by_win_count(teams) #  [[x win], [x-1 win], [x-2 win], ..., [1 win], [0 win]]
-
-    # check if any additional matches are needed ( 3b bezpośredni mecz)
-    additional_maches_count = 0
-    for teams_array in teams_sorted_by_win_count:
-        if len(teams_array) == 2:
-            additional_maches_count += 1
-    if additional_maches_count > 0:
-        print("jest przynajmniej jedna grupa składająca się z drużyn posiadajacych identyczną ilość wygranych!")
-        exit(1)
+    teams_sorted_by_win_count = group_by_win_count(teams) #  [[x win], [x-1 win], ..., [1 win], [0 win]]
 
     teams_sorted = []
-    # solve conflicts 
+    # solve conflicts
     for teams_array in teams_sorted_by_win_count:
-        if len(teams_array) >= 3:
-            conflict_solved_team_array = solve_intrested_teams_conflicts(teams_array, group)
+        if len(teams_array) == 2:
+            conflict_solved_team_array = solve_group_conflict_2(teams_array, games)
             for team in conflict_solved_team_array:
                 teams_sorted.append(team)
+
+        elif len(teams_array) >= 3:
+            conflict_solved_team_array = solve_group_conflict_3(teams_array, games)
+            for team in conflict_solved_team_array:
+                teams_sorted.append(team)
+
         elif len(teams_array) != 0:
             teams_sorted.append(teams_array[0])
 
