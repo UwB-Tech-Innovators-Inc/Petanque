@@ -1,0 +1,44 @@
+duże punkty
+G_1_1 2
+G_1_2 2
+G_1_3 0
+G_1_4 2
+
+duże punkty z drużynami zainte
+G_1_1 1
+G_1_2 1
+G_1_4 1
+
+bilans małych punktow z drużynami zainte
+G_1_1 -1    +10 = +9 
+G_1_2    +9 -10 = -1
+G_1_4 +1 -9     = -8
+
+zdobyte małe punkty z drużynami zainte
+G_1_1 12    13 = 25
+G_1_2    13  3 = 16
+G_1_4 13  4    = 17
+
+stracone małe punkty z drużynami zainte
+G_1_1 13     3 = 16
+G_1_2     4 13 = 17
+G_1_4 12 13    = 25
+
+
+bilans małych punktow z wszystkimi drużynami
+G_1_1 -1    +13    +10    = 22
+G_1_2    +7     +9 -10    =  6
+G_1_4 +1        -9     +9 =  1
+
+zdobyte małe punkty z wszystkimi drużynami
+G_1_1 12    13    13    = 38
+G_1_2    13    13  3    = 29
+G_1_4 13        4    13 = 30
+
+stracone małe punkty z wszystkimi drużynami
+G_1_1 13   0     3   = 16
+G_1_2    6    4 13   = 23
+G_1_4 12     13    4 = 29
+
+
+

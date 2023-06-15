@@ -1,0 +1,296 @@
+{
+  "name" : "faza_2",
+
+  "group_9" : {
+    "teams" : {
+      "team_1" : "G_1_1",
+      "team_2" : "G_1_2",
+      "team_3" : "G_1_3",
+      "team_4" : "G_2_1",
+      "team_5" : "G_2_2",
+      "team_6" : "G_2_3"
+    },
+    "games" : {
+      "round_1" : {
+        "game_1_6" : {
+          "team_1": "G_1_1",
+          "team_2": "G_2_3",
+          "result_1" : 13,
+          "result_2" : 11
+        },
+        "game_2_4" : {
+          "team_1": "G_1_2",
+          "team_2": "G_2_1",
+          "result_1" : 2,
+          "result_2" : 13
+        },
+        "game_3_5" : {
+          "team_1": "G_1_3",
+          "team_2": "G_2_2",
+          "result_1" : 6,
+          "result_2" : 13
+        }
+      },
+      "round_2" : {
+        "game_1_5" : {
+          "team_1": "G_1_1",
+          "team_2": "G_2_2",
+          "result_1" : 13,
+          "result_2" : 6
+        },
+        "game_2_6" : {
+          "team_1": "G_1_2",
+          "team_2": "G_2_3",
+          "result_1" : 7,
+          "result_2" : 13
+        },
+        "game_3_4" : {
+          "team_1": "G_1_3",
+          "team_2": "G_2_1",
+          "result_1" : 9,
+          "result_2" : 13
+        }
+      },
+      "round_3" : {
+        "game_1_4" : {
+          "team_1": "G_1_1",
+          "team_2": "G_2_1",
+          "result_1" : 8,
+          "result_2" : 13
+        },
+        "game_2_5" : {
+          "team_1": "G_1_2",
+          "team_2": "G_2_2",
+          "result_1" : 8,
+          "result_2" : 13
+        },
+        "game_3_6" : {
+          "team_1": "G_1_3",
+          "team_2": "G_2_3",
+          "result_1" : 4,
+          "result_2" : 13
+        }
+      }
+    }
+  },
+
+  "group_10" : {
+    "teams" : {
+      "team_1" : "G_3_1",
+      "team_2" : "G_3_2",
+      "team_3" : "G_3_3",
+      "team_4" : "G_4_1",
+      "team_5" : "G_4_2",
+      "team_6" : "G_4_3"
+    },
+    "games" : {
+      "round_1" : {
+        "game_1_6" : {
+          "team_1": "G_3_1",
+          "team_2": "G_4_3",
+          "result_1" : 13,
+          "result_2" : 4
+        },
+        "game_2_4" : {
+          "team_1": "G_3_2",
+          "team_2": "G_4_1",
+          "result_1" : 13,
+          "result_2" : 11
+        },
+        "game_3_5" : {
+          "team_1": "G_3_3",
+          "team_2": "G_4_2",
+          "result_1" : 4,
+          "result_2" : 13
+        }
+      },
+      "round_2" : {
+        "game_1_5" : {
+          "team_1": "G_3_1",
+          "team_2": "G_4_2",
+          "result_1" : 13,
+          "result_2" : 8
+        },
+        "game_2_6" : {
+          "team_1": "G_3_2",
+          "team_2": "G_4_3",
+          "result_1" : 13,
+          "result_2" : 3
+        },
+        "game_3_4" : {
+          "team_1": "G_3_3",
+          "team_2": "G_4_1",
+          "result_1" : 6,
+          "result_2" : 13
+        }
+      },
+      "round_3" : {
+        "game_1_4" : {
+          "team_1": "G_3_1",
+          "team_2": "G_4_1",
+          "result_1" : 13,
+          "result_2" : 10
+        },
+        "game_2_5" : {
+          "team_1": "G_3_2",
+          "team_2": "G_4_2",
+          "result_1" : 9,
+          "result_2" : 13
+        },
+        "game_3_6" : {
+          "team_1": "G_3_3",
+          "team_2": "G_4_3",
+          "result_1" : 8,
+          "result_2" : 13
+        }
+      }
+    }
+  },
+
+  "group_11" : {
+    "teams" : {
+      "team_1" : "G_5_1",
+      "team_2" : "G_5_2",
+      "team_3" : "G_5_3",
+      "team_4" : "G_6_1",
+      "team_5" : "G_6_2",
+      "team_6" : "G_6_3"
+    },
+    "games" : {
+      "round_1" : {
+        "game_1_6" : {
+          "team_1": "G_5_1",
+          "team_2": "G_6_3",
+          "result_1" : 13,
+          "result_2" : 5
+        },
+        "game_2_4" : {
+          "team_1": "G_5_2",
+          "team_2": "G_6_1",
+          "result_1" : 6,
+          "result_2" : 13
+        },
+        "game_3_5" : {
+          "team_1": "G_5_3",
+          "team_2": "G_6_2",
+          "result_1" : 12,
+          "result_2" : 13
+        }
+      },
+      "round_2" : {
+        "game_1_5" : {
+          "team_1": "G_5_1",
+          "team_2": "G_6_2",
+          "result_1" : 8,
+          "result_2" : 13
+        },
+        "game_2_6" : {
+          "team_1": "G_5_2",
+          "team_2": "G_6_3",
+          "result_1" : 13,
+          "result_2" : 6
+        },
+        "game_3_4" : {
+          "team_1": "G_5_3",
+          "team_2": "G_6_1",
+          "result_1" : 11,
+          "result_2" : 13
+        }
+      },
+      "round_3" : {
+        "game_1_4" : {
+          "team_1": "G_5_1",
+          "team_2": "G_6_1",
+          "result_1" : 3,
+          "result_2" : 13
+        },
+        "game_2_5" : {
+          "team_1": "G_5_2",
+          "team_2": "G_6_2",
+          "result_1" : 13,
+          "result_2" : 7
+        },
+        "game_3_6" : {
+          "team_1": "G_5_3",
+          "team_2": "G_6_3",
+          "result_1" : 13,
+          "result_2" : 4
+        }
+      }
+    }
+  },
+
+  "group_12" : {
+    "teams" : {
+      "team_1" : "G_7_1",
+      "team_2" : "G_7_2",
+      "team_3" : "G_7_3",
+      "team_4" : "G_8_1",
+      "team_5" : "G_8_2",
+      "team_6" : "G_8_3"
+    },
+    "games" : {
+      "round_1" : {
+        "game_1_6" : {
+          "team_1": "G_7_1",
+          "team_2": "G_8_3",
+          "result_1" : 13,
+          "result_2" : 0
+        },
+        "game_2_4" : {
+          "team_1": "G_7_2",
+          "team_2": "G_8_1",
+          "result_1" : 8,
+          "result_2" : 13
+        },
+        "game_3_5" : {
+          "team_1": "G_7_3",
+          "team_2": "G_8_2",
+          "result_1" : 8,
+          "result_2" : 13
+        }
+      },
+      "round_2" : {
+        "game_1_5" : {
+          "team_1": "G_7_1",
+          "team_2": "G_8_2",
+          "result_1" : 13,
+          "result_2" : 7
+        },
+        "game_2_6" : {
+          "team_1": "G_7_2",
+          "team_2": "G_8_3",
+          "result_1" : 7,
+          "result_2" : 13
+        },
+        "game_3_4" : {
+          "team_1": "G_7_3",
+          "team_2": "G_8_1",
+          "result_1" : 10,
+          "result_2" : 13
+        }
+      },
+      "round_3" : {
+        "game_1_4" : {
+          "team_1": "G_7_1",
+          "team_2": "G_8_1",
+          "result_1" : 13,
+          "result_2" : 8
+        },
+        "game_2_5" : {
+          "team_1": "G_7_2",
+          "team_2": "G_8_2",
+          "result_1" : 3,
+          "result_2" : 13
+        },
+        "game_3_6" : {
+          "team_1": "G_7_3",
+          "team_2": "G_8_3",
+          "result_1" : 13,
+          "result_2" : 0
+        }
+      }
+    }
+  }
+
+}

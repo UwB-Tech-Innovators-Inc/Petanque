@@ -65,12 +65,112 @@ def phase_1_prepare_result_json(array):
 
 def solve_group_conflict_3(intrested_teams, group_games):
     # check which team was better in those who are in conflict
+    print(intrested_teams)
+    print(group_games)
     conflict_solved_array = []
+
+    wins_with_intrested_teams = {}
+    balance_with_intrested_teams = {}
+    gained_small_points_with_intrested_teams = {}
+    lost_small_points_with_intrested_teams = {}
+
+    balance_with_all_teams = {}
+    gained_small_points_with_all_teams = {}
+    lost_small_points_with_all_teams = {}
+
+    # init dicts
+    for team in intrested_teams:
+        wins_with_intrested_teams[team] = 0
+        balance_with_intrested_teams[team] = 0
+        gained_small_points_with_intrested_teams[team] = 0
+        lost_small_points_with_intrested_teams[team] = 0
+
+        balance_with_all_teams[team] = 0
+        gained_small_points_with_all_teams[team] = 0
+        lost_small_points_with_all_teams[team] = 0
+
+
     for round_name in group_games:
         round = group_games[round_name]
         for game_name in round:
             game = round[game_name]
-            pass
+
+            # intrested teams actions
+            if game['team_1'] in intrested_teams and game['team_2'] in intrested_teams:
+
+                # count wins with intrested teams
+                if game["result_1"] > game["result_2"]:
+                    wins_with_intrested_teams[game["team_1"]] += 1
+                elif game["result_1"] < game["result_2"]:
+                    wins_with_intrested_teams[game["team_2"]] += 1
+                else:
+                    print("nie powinno być identycznych wyników meczu")
+                    exit(1)
+
+                # count balance with intrested teams
+                balance_with_intrested_teams[game['team_1']] += game['result_1'] - game['result_2']
+                balance_with_intrested_teams[game['team_2']] += game['result_2'] - game['result_1']
+
+                # count gained small points with intrested teams
+                gained_small_points_with_intrested_teams[game['team_1']] += game['result_1']
+                gained_small_points_with_intrested_teams[game['team_2']] += game['result_2']
+
+                # count lost small points with intested teams
+                lost_small_points_with_intrested_teams[game['team_1']] += game['result_2']
+                lost_small_points_with_intrested_teams[game['team_2']] += game['result_1']
+
+            # not intrested teams actions
+            if game['team_1'] in intrested_teams:
+
+                # balance with all teams
+                balance_with_all_teams[game['team_1']] += game['result_1'] - game['result_2']
+
+                # gained small points with all teams
+                gained_small_points_with_all_teams[game['team_1']] += game['result_1']
+
+                # lost small points with all teams
+                lost_small_points_with_all_teams[game['team_1']] += game['result_2']
+
+                pass
+            if game['team_2'] in intrested_teams:
+
+                # balance with all teams
+                balance_with_all_teams[game['team_2']] += game['result_2'] - game['result_1']
+
+                # gained small points with all teams
+                gained_small_points_with_all_teams[game['team_2']] += game['result_2']
+
+                # lost small points with all teams
+                lost_small_points_with_all_teams[game['team_2']] += game['result_1']
+
+                pass
+
+    # mając 3 drużyny, dwie z nich będą miały identyczny wynik a trzecia inny i mamy ją wtedy odłączyć od drużyn zainteresowanych to muszę rozbić tego fora wyżej na wiele mniejszych
+
+    print()
+    print(wins_with_intrested_teams)
+    print(balance_with_intrested_teams)
+    print(gained_small_points_with_intrested_teams)
+    print(lost_small_points_with_intrested_teams)
+    print()
+    print(balance_with_all_teams)
+    print(gained_small_points_with_all_teams)
+    print(lost_small_points_with_all_teams)
+    print()
+
+
+
+    # for team in intrested_teams:
+    #     # count how many times each team won with others in this array
+
+
+    # for round_name in group_games:
+    #     round = group_games[round_name]
+    #     for game_name in round:
+    #         game = round[game_name]
+    #
+    #         print(game)
+    #         pass
 
     for i in intrested_teams:
         conflict_solved_array.append(i)
@@ -201,7 +301,7 @@ def phase_1_result(json):
 def tmp():
     # https://www.geeksforgeeks.org/read-json-file-using-python/
 
-    file = open('petanque_mpm_faza_1.json')
+    file = open('petanque_mpm_faza_1_real.json')
     data = json.load(file)
     file.close()
     phase_1_result(data)
